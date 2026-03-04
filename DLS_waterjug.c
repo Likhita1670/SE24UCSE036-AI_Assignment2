@@ -3,10 +3,9 @@
 int visited[5][4];
 int goalFound = 0;
 
-int min(int x, int y)
+int min(int a, int b)
 {
-    if(x < y) return x;
-    return y;
+    return (a < b) ? a : b;
 }
 
 void DLS(int a, int b, int depth, int limit)
@@ -42,18 +41,18 @@ void DLS(int a, int b, int depth, int limit)
     // Empty B
     DLS(a, 0, depth+1, limit);
 
-    // Pour A → B
-    transfer = min(a, 3-b);
-    DLS(a-transfer, b+transfer, depth+1, limit);
+    // Pour A -> B
+    transfer = min(a, 3 - b);
+    DLS(a - transfer, b + transfer, depth+1, limit);
 
-    // Pour B → A
-    transfer = min(b, 4-a);
-    DLS(a+transfer, b-transfer, depth+1, limit);
+    // Pour B -> A
+    transfer = min(b, 4 - a);
+    DLS(a + transfer, b - transfer, depth+1, limit);
 }
 
 int main()
 {
-    int limit = 5;
+    int limit = 10;   // large enough to reach solution
 
     printf("Depth Limited Search (limit=%d)\n", limit);
 
